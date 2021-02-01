@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .models import MovieCategory,Movies
 
 
-def populate_data(json_data, region):
+def populate_data(json_data, region, category):
     id = json_data.get("id")
     title = json_data.get("original_title")
     overview = json_data.get("overview") or None
@@ -15,7 +15,7 @@ def populate_data(json_data, region):
     popularity = json_data.get("popularity")
     vote = json_data.get("vote_count")
     vote_avg = json_data.get("vote_average")
-    category, created = MovieCategory.objects.get_or_create(category="LATEST")
+    category, created = MovieCategory.objects.get_or_create(category=category.upper())
     Movies.objects.get_or_create(
         id=id, title=title, overview=overview,
         release_date=release_date, rated=rated,
@@ -33,10 +33,10 @@ def populate_data_view(request, category):
         request_object = requests.get(url=url)
         json_data = request_object.json()
         if category == "latest":
-            populate_data(json_data, region)
+            populate_data(json_data, region, category )
         else:
             movies_data = json_data["results"]
             for data in movies_data:
-                populate_data(data, region)
+                populate_data(data, region, category)
 
-    return HttpResponse(f"{category.upper()} MOVIES DATA DUMPED SUCCESSFULL..!!")
+    return HttpResponse(f"{category.upper()} MOVIES DATA DUMPED SUCCESSFULLY..!!")
