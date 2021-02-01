@@ -6,5 +6,5 @@ from movie import views
 
 urlpatterns = [
     path('populate_movies/<category>/', views.populate_data_view),
-    path('graphql/',  GraphQLView.as_view(graphiql=True, schema=schema))
+    path('',  GraphQLView.as_view(graphiql=True, schema=schema))
 ]
