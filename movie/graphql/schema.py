@@ -50,8 +50,9 @@ class Query(graphene.ObjectType):
     def resolve_watched_movies(self,root):
         return WatchedMovies.objects.all()
 
-    def resolve_recommended_movies(self,codename):
+    def resolve_recommended_movies(self,root,codename):
         codename = codename.upper()
+        print(codename)
         try:
             return WatchedMovies.objects.filter(code_name__code_name=codename)
         except:
