@@ -33,15 +33,15 @@ Done
 
 ### Now You can use Graphql api, before that we need to follow below steps to dump movie db
 Step-1
-Hit Below urls in browser to populate movie db from [MovieDB API](https://developers.themoviedb.org/3/getting-started/introduction).
+This is Homepage
 ```sh
-http://127.0.0.1:8000/populate_movies/<category>
-category could be : 'latest','popular','upcoming'
+http://127.0.0.1:8000
 ```
 Step-2
-Access GraphQL
-```shell
-http://127.0.0.1:8000/graphql/
+Hit Below urls in browser to populate movie db from [MovieDB API](https://developers.themoviedb.org/3/getting-started/introduction).
+```sh
+http://127.0.0.1:8000/graphql/populate_movies/<category>
+category could be : 'latest','popular','upcoming'
 ```
 Step-3
 Sample query show list of all movies present in the database.
@@ -96,7 +96,7 @@ Step-6
 Now you can create list with unique code name for above created user.
 ```sh
 mutation createlist{
-   createListType(codeName:"Action",userId:2){
+   createListType(codeName:"Action",userId:1){
       listType
       {
          codeName 
@@ -147,7 +147,7 @@ query recommended{
 
 ```
 
-
+Note:admin can create the new users so that user can  create a list with unique codename.
 
 
 
