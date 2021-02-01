@@ -35,9 +35,8 @@ Done
 Step-1
 Hit Below urls in browser to populate movie db from [MovieDB API](https://developers.themoviedb.org/3/getting-started/introduction).
 ```sh
-http://127.0.0.1:8000/popular/
-http://127.0.0.1:8000/upcoming/
-http://127.0.0.1:8000/latest/
+http://127.0.0.1:8000/populate_movies/<category>
+category could be : 'latest','popular','upcoming'
 ```
 Step-2
 Access GraphQL
@@ -50,7 +49,7 @@ Sample query show list of all movies present in the database.
 query ShowAll{
   
    allMovies{
-      Id
+      id
       title
       overview
       releaseDate
@@ -72,7 +71,7 @@ Sample query to show detailed data of a particular movie given id as the argumen
 ```sh
 query ShowSpecific{
    specificMovie(id:476928){
-      Id
+      id
       title
       overview
       releaseDate
@@ -131,7 +130,7 @@ General query to see movie recommendation based on watched list by providing cod
 query recommended{
    recommendedMovies(codename:"action"){
      movie{
-      Id
+      id
       title
       overview
       rated

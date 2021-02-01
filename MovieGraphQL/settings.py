@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -71,17 +71,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MovieGraphQL.wsgi.application'
 
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DB_name',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'DB_user',
-        'PASSWORD': 'DB_password',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -127,3 +124,6 @@ STATIC_URL = '/static/'
 API_KEY = "72d49f76c5ceced8d540ea2317e7949e"
 
 REGION = 'US'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
